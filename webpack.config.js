@@ -14,7 +14,7 @@ module.exports = {
   ],
   output: {
     path: __dirname + "/public",
-    filename: "build/[name].[contenthash].js"
+    filename: "build/[name].[hash].js"
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
@@ -22,7 +22,11 @@ module.exports = {
   devServer: {
     contentBase: __dirname + "/public",
     compress: true,
-    port: 3000
+    port: 3000,
+    stats: {
+      children: false, // Hide children information
+      maxModules: 0 // Set the maximum number of modules to be shown
+    }
   },
   module: {
     rules: [
