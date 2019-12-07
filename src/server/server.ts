@@ -6,11 +6,20 @@ import "./config";
 const app: Express = express();
 const notice = clc.green;
 const statement = clc.blueBright;
-const { PORT } = process.env;
+const { PORT, NODE_ENV } = process.env;
 
-app.get("/", (req: Request, res: Response) => {
-  console.log("hi", req, res);
+if (NODE_ENV === "production") {
+  app.use(express.static(__dirname + "/public"));
+}
+
+app.get("/", (_req: Request, res: Response) => {
+  res.status(200).sendFile(__dirname + "/public/index.html");
 });
+
+if (NODE_ENV === "production")
+  app.get("/helloworld", (_req: Request, res: Response) => {
+    res.status(200).send("hi");
+  });
 
 app.listen(PORT, () => {
   console.log(
