@@ -38,6 +38,7 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "devDependencies": {
+    "concurrently": "^5.0.0",
     "file-loader": "^5.0.2"
   }
 }
